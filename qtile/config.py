@@ -222,7 +222,7 @@ def init_layout_theme():
     return {
         "margin": 5,
         "border_width": 2,
-        "border_focus": "#5e81ac",
+        "border_focus": "#5e1ac",
         "border_normal": "#4c566a",
     }
 
@@ -282,16 +282,18 @@ widget_defaults = init_widgets_defaults()
 def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
+
+        widget.Sep(linewidth=0, padding=9, foreground=colors[2], background=colors[0]),
         widget.TextBox(
-            text="🙃",
+            text="ऋ",
             font="Noto Color Emoji",
-            fontsize=20,
+            fontsize=23,
             foreground=colors[2],
             background=colors[0],
             margin_x=5,
             padding_y=4,
         ),
-        widget.Sep(linewidth=0, padding=6, foreground=colors[2], background=colors[0]),
+        widget.Sep(linewidth=0, padding=5, foreground=colors[2], background=colors[0]),
         widget.GroupBox(
             font="CaskaydiaCove Nerd Font",
             fontsize=13,
@@ -419,7 +421,7 @@ def init_screens():
     return [
         Screen(
             top=bar.Bar(
-                widgets=init_widgets_screen1(), size=26, opacity=1, margin=[9, 9, 0, 9]
+                widgets=init_widgets_screen1(), size=26, opacity=1, margin=[8, 8, 0, 8]
             )
         )
     ]  # NESW

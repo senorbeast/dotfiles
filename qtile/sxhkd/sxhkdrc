@@ -69,6 +69,19 @@ super + b
 super + c
     code
 
+#To turn off laptop display
+super + shift + o
+  xrandr --output eDP1 --off
+
+#To turn on laptop display 
+super + o
+  xrandr --output eDP1 --auto
+#Emojis
+super + ;
+    ibus emoji
+alt + ;
+    ibus emoji
+
 #Htop
 #super + h
 #    urxvt 'htop task manager' -e htop

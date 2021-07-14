@@ -3,64 +3,47 @@
 local M = {}
 
 M.setup = function()
-    local tsserver_args = {}
+  local tsserver_args = {}
 
-    local prettier = {
-        formatCommand = "prettier --stdin-filepath ${INPUT}",
-        formatStdin = true
-    }
-
-    if vim.fn.glob("node_modules/.bin/prettier") then
-        prettier = {
-            formatCommand = "./node_modules/.bin/prettier --stdin-filepath ${INPUT}",
-            formatStdin = true
-        }
-    end
-
-    -- TODO global eslint?
-
+  if O.lang.tsserver.linter == "eslint" or O.lang.tsserver.linter == "eslint_d" then
     local eslint = {
-        lintCommand = "./node_modules/.bin/eslint -f unix --stdin --stdin-filename ${INPUT}",
-        lintIgnoreExitCode = true,
-        lintStdin = true,
-        lintFormats = {"%f:%l:%c: %m"},
-        -- formatCommand = "./node_modules/.bin/eslint -f unix --fix --stdin-filename ${INPUT}", -- TODO check if eslint is the formatter then add this
-        formatStdin = true
+      lintCommand = O.lang.tsserver.linter .. " -f unix --stdin --stdin-filename   {INPUT}",
+      lintStdin = true,
+      lintFormats = { "%f:%l:%c: %m" },
+      lintIgnoreExitCode = true,
+      formatCommand = O.lang.tsserver.linter .. " --fix-to-stdout --stdin  --stdin-filename=${INPUT}",
+      formatStdin = true,
     }
+    table.insert(tsserver_args, eslint)
+  end
 
-    if O.lang.tsserver.formatter == 'prettier' then
-        table.insert(tsserver_args, prettier)
-    end
-
-    if O.lang.tsserver.linter == 'eslint' then
-        table.insert(tsserver_args, eslint)
-    end
-
-    require"lspconfig".efm.setup {
-        -- init_options = {initializationOptions},
-        cmd = {DATA_PATH .. "/lspinstall/efm/efm-langserver"},
-        init_options = {documentFormatting = true, codeAction = false},
-        filetypes = {
-            "javascriptreact", "javascript", "typescript", "typescriptreact",
-            "html", "css", "yaml", "vue"
-        },
-        settings = {
-            rootMarkers = {".git/", "package.json"},
-            languages = {
-                javascript = tsserver_args,
-                javascriptreact = tsserver_args,
-                typescript = tsserver_args,
-                typescriptreact = tsserver_args,
-                html = {prettier},
-                css = {prettier},
-                json = {prettier},
-                yaml = {prettier}
-                -- javascriptreact = {prettier, eslint},
-                -- javascript = {prettier, eslint},
-                -- markdown = {markdownPandocFormat, markdownlint},
-            }
-        }
-    }
+  require("lspconfig").efm.setup {
+    -- init_options = {initializationOptions},
+    cmd = { DATA_PATH .. "/lspinstall/efm/efm-langserver" },
+    init_options = { documentFormatting = true, codeAction = false },
+    root_dir = require("lspconfig").util.root_pattern(".git/", "package.json"),
+    filetypes = {
+      "vue",
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "javascript.jsx",
+      "typescript.tsx",
+    },
+    settings = {
+      rootMarkers = { ".git/", "package.json" },
+      languages = {
+        vue = tsserver_args,
+        javascript = tsserver_args,
+        javascriptreact = tsserver_args,
+        ["javascript.jsx"] = tsserver_args,
+        typescript = tsserver_args,
+        ["typescript.tsx"] = tsserver_args,
+        typescriptreact = tsserver_args,
+      },
+    },
+  }
 end
 
 return M
