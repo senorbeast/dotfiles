@@ -25,8 +25,8 @@
 # SOFTWARE.
 
 # Install fonts : CaskaydiaCove Nerd Fonts, Noto Sans
-                # FiraCode NF + Mono
-                # Some emoji font (Noto Color Emoji) or yay -S emoji-keyboard-git 
+# FiraCode NF + Mono
+# Some emoji font (Noto Color Emoji) or yay -S emoji-keyboard-git
 import os
 import socket
 import subprocess
@@ -222,20 +222,19 @@ def init_layout_theme():
     return {
         "margin": 5,
         "border_width": 2,
-        "border_focus": "#5e1ac",
+        "border_focus": "#6790eb",
         "border_normal": "#4c566a",
     }
 
 
 layout_theme = init_layout_theme()
 
-
 layouts = [
     layout.MonadTall(
-        margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"
+        margin=8, border_width=2, border_focus="#6790eb", border_normal="#4c566a"
     ),
     layout.MonadWide(
-        margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"
+        margin=8, border_width=2, border_focus="#6790eb", border_normal="#4c566a"
     ),
     layout.Matrix(**layout_theme),
     layout.Bsp(**layout_theme),
@@ -282,7 +281,6 @@ widget_defaults = init_widgets_defaults()
 def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
-
         widget.Sep(linewidth=0, padding=9, foreground=colors[2], background=colors[0]),
         widget.TextBox(
             text="ऋ",
@@ -307,8 +305,8 @@ def init_widgets_list():
             inactive=colors[9],
             rounded=True,
             highlight_method="line",
-            this_current_screen_border=colors[7],  # Underline Highlight
-            this_screen_border=colors[7],  # Active window border
+            this_current_screen_border=colors[8],  # Underline Highlight
+            this_screen_border=colors[8],  # Active window border
             other_current_screen_border=colors[6],
             other_screen_border=colors[6],
             foreground=colors[2],
@@ -378,7 +376,22 @@ def init_widgets_list():
         #              background = colors[4],
         #              padding = 5
         #              ),
-        #
+        #,
+        widget.CPU(
+                    font="CaskaydiaCove Nerd Font",
+                    fontsize=13,
+                    foreground=colors[2],
+                    background=colors[0],
+                    format="  CPU {load_percent}%"
+                ),
+        widget.Memory(
+                    # font="SF Pro Display",
+                    font="CaskaydiaCove Nerd Font",
+                    fontsize=13,
+                    foreground=colors[2],
+                    background=colors[0],
+                    format='  {MemUsed: .0f}/{MemTotal:.0f} MB ',
+                ),
         widget.CurrentLayoutIcon(
             custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
             foreground=colors[0],
@@ -386,13 +399,13 @@ def init_widgets_list():
             padding=0,
             scale=0.7,
         ),
-        widget.CurrentLayout(
-            font="CaskaydiaCove Nerd Font",
-            fontsize=13,
-            foreground=colors[2],
-            background=colors[5],
-            padding=5,
-        ),
+        # widget.CurrentLayout(
+        #    font="CaskaydiaCove Nerd Font",
+        #    fontsize=13,
+        #    foreground=colors[2],
+        #    background=colors[5],
+        #    padding=5,
+        # ),
         widget.Systray(background=colors[0], padding=7),
         widget.Sep(linewidth=1, padding=7, foreground=colors[0], background=colors[0]),
         widget.Clock(
@@ -400,7 +413,7 @@ def init_widgets_list():
             fontsize=14,
             foreground=colors[0],
             background=colors[7],
-            format="  %A %d %B : %H:%M:%S  ",
+            format=" %a %d %b : %H:%M:%S ",
         ),
     ]
     return widgets_list
@@ -421,7 +434,7 @@ def init_screens():
     return [
         Screen(
             top=bar.Bar(
-                widgets=init_widgets_screen1(), size=26, opacity=1, margin=[8, 8, 0, 8]
+                widgets=init_widgets_screen1(), size=26, opacity=1, margin=[9, 9, 0, 9]
             )
         )
     ]  # NESW

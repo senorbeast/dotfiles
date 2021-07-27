@@ -96,7 +96,7 @@ super + F12
 
 #Urxvt
 super + t
-    urxvt
+    termite
 
 #Pavucontrol
 super + v
