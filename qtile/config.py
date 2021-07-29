@@ -169,14 +169,15 @@ group_names = ["1", "2", "3", "4", "5", "6"]
 
 # group_labels = ["1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "0",]
 # group_labels = ["", "", "", "", "", "", "", "", "", "",]
-group_labels = [
-    " WWW",
-    "  DEV",
-    "  SYS",
-    "  DOC",
-    "  CHAT",
-    "  NEW",
-]
+# group_labels = [
+#     " WWW",
+#     "  DEV",
+#     "  SYS",
+#     "  DOC",
+#     "  CHAT",
+#     "  PEW",
+# ]
+group_labels = ["一", "二", "三", "四", "五", "六"]
 group_layouts = [
     "monadtall",
     "monadtall",
@@ -252,17 +253,13 @@ def init_colors():
         ["#3d3f4b", "#434758"],  # 1 background for current screen tab
         ["#ffffff", "#ffffff"],  # 2 font color for group names
         ["#ff5555", "#ff5555"],  # 3 border line color for current tab
-        [
-            "#74438f",
-            "#74438f",
-        ],  # 4 border line color for 'other tabs'
+        ["#74438f", "#74438f"],  # 4 border line color for 'other tabs'
         ["#4f76c7", "#4f76c7"],  # 5 color for the 'even widgets '
         ["#e1acff", "#e1acff"],  # 6window name
-        # ["#ecbbfb", "#ecbbfb"], # 7  backbround for inactive screens
         ["#88c0d0", "#88c0d0"],  # 7 Blue
-        ["#6790eb", "#6790eb"],  # color 8
-        ["#a9a9a9", "#a9a9a9"],
-    ]  # color 9
+        ["#6790eb", "#6790eb"],  # 8 color 8
+        ["#a9a9a9", "#a9a9a9"],  # color 9
+    ]
 
 
 colors = init_colors()
@@ -281,20 +278,20 @@ widget_defaults = init_widgets_defaults()
 def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
-        widget.Sep(linewidth=0, padding=9, foreground=colors[2], background=colors[0]),
+        widget.Sep(linewidth=0, padding=9, foreground=colors[2], background=colors[2]),
         widget.TextBox(
-            text="ऋ",
+            text="ऋ ",
             font="Noto Color Emoji",
             fontsize=23,
-            foreground=colors[2],
-            background=colors[0],
+            foreground=colors[0],
+            background=colors[2],
             margin_x=5,
             padding_y=4,
         ),
         widget.Sep(linewidth=0, padding=5, foreground=colors[2], background=colors[0]),
         widget.GroupBox(
             font="CaskaydiaCove Nerd Font",
-            fontsize=13,
+            fontsize=15,
             margin_y=3,
             margin_x=0,
             padding_y=5,
@@ -305,7 +302,7 @@ def init_widgets_list():
             inactive=colors[9],
             rounded=True,
             highlight_method="line",
-            this_current_screen_border=colors[8],  # Underline Highlight
+            this_current_screen_border=colors[2],  # Underline Highlight
             this_screen_border=colors[8],  # Active window border
             other_current_screen_border=colors[6],
             other_screen_border=colors[6],
@@ -376,22 +373,22 @@ def init_widgets_list():
         #              background = colors[4],
         #              padding = 5
         #              ),
-        #,
+        # ,
         widget.CPU(
-                    font="CaskaydiaCove Nerd Font",
-                    fontsize=13,
-                    foreground=colors[2],
-                    background=colors[0],
-                    format="  CPU {load_percent}%"
-                ),
+            font="CaskaydiaCove Nerd Font",
+            fontsize=13,
+            foreground=colors[2],
+            background=colors[0],
+            format="  CPU {load_percent}%",
+        ),
         widget.Memory(
-                    # font="SF Pro Display",
-                    font="CaskaydiaCove Nerd Font",
-                    fontsize=13,
-                    foreground=colors[2],
-                    background=colors[0],
-                    format='  {MemUsed: .0f}/{MemTotal:.0f} MB ',
-                ),
+            # font="SF Pro Display",
+            font="CaskaydiaCove Nerd Font",
+            fontsize=13,
+            foreground=colors[2],
+            background=colors[0],
+            format="  {MemUsed: .0f}/{MemTotal:.0f} MB ",
+        ),
         widget.CurrentLayoutIcon(
             custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
             foreground=colors[0],

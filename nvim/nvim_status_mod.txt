@@ -1,0 +1,69 @@
+
+--New Way to display mode
+
+function Has_width_gt(cols)
+    -- Check if the windows width is greater than a given number of columns
+    return vim.fn.winwidth(0) / 2 > cols
+end
+
+local mode_color = function()
+    local mode_colors = {
+        [110] = colors.green,
+        [105] = colors.blue,
+        [99] = colors.vivid_blue,
+        [116] = colors.blue,
+        [118] = colors.purple,
+        [22] = colors.purple,
+        [86] = colors.purple,
+        [82] = colors.red,
+        [115] = colors.red,
+        [83] = colors.red,
+    }
+ local color = mode_colors[vim.fn.mode():byte()]
+    if color ~= nil then
+        return color
+    else
+        return colors.purple
+    end
+end
+table.insert(gls.left, {
+    ViMode = {
+        provider = function()
+            local aliases = {
+                [110] = 'NORMAL',
+                [105] = 'INSERT',
+                [99] = 'COMMAND',
+                [116] = 'TERMINAL',
+                [118] = 'VISUAL',
+                [22] = 'V-BLOCK',
+                [86] = 'V-LINE',
+                [82] = 'REPLACE',
+                [115] = 'SELECT',
+                [83] = 'S-LINE',
+            }
+            vim.api.nvim_command('hi GalaxyViMode guibg=' .. mode_color())
+            local alias = aliases[vim.fn.mode():byte()]
+            local mode
+            if alias ~= nil then
+                if Has_width_gt(35) then
+                    mode = alias
+                else
+                    mode = alias:sub(1, 1)
+                end
+            else
+                mode = vim.fn.mode():byte()
+            end
+            return '  ' .. mode .. ' '
+        end,
+        highlight = { colors.bg, colors.bg, 'bold' },
+    }
+})
+-- Just to fix length of ViMode
+table.insert(gls.left, {
+    Spacer = {
+        provider = function()
+            return ''
+        end
+    }
+})
+-- </new way to display mode>
