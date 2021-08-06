@@ -20,7 +20,8 @@ window:
   #dimensions:
   #  columns: 0
   #  lines: 0
-
+  #
+  #
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
