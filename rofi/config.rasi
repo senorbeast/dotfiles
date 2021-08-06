@@ -1,19 +1,21 @@
-// Config
-
 configuration {
-	modi: "drun,window,run,combi";
-	cycle: true;
-	show-icons: true;
-	display-drun: "";
-	display-window: "";
-	matching: "glob";
-	lines: 8;
-	columns: 1;
-	width: 560;
-	location: 0;
-	padding: 50;
-	font: "FiraCode Nerd Font Mono 14";
-	hide-scrollbar: true;
-	theme: "javacafe";
-	display-combi: "rofi";
+  terminal: "kitty";
+  modi: "combi,window,drun,ssh,file-browser";
+  combi-modi: "drun,window";
+  font: "Noto Sans Bold 10";
+  show-icons: true;
+  icon-theme: "Tela circle dark";
+  combi-hide-mode-prefix: true;
+  drun-show-actions: true;
+  drun-display-format: "{name}";
+  disable-history: false;
+  fullscreen: false;
+  hide-scrollbar: true;
+  sidebar-mode: false;
+  auto-select: false;
+  theme: "~/.local/share/rofi/themes/doom-one.rasi";
 }
+
+/*
+ * vim: ft=css sw=2 ts=2
+ */

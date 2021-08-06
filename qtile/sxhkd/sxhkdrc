@@ -58,9 +58,9 @@ super + r
 # SUPER + ... KEYS
 #################################################################
 
-#Atom
+#eww
 super + e
-    atom
+    ~/.config/eww/launch_eww
 
 #Browser
 super + b
@@ -103,8 +103,8 @@ super + v
     pavucontrol
 
 #Pragha
-super + m
-    pragha
+super + p
+    flameshot gui
 
 #urxvt
 super + Return

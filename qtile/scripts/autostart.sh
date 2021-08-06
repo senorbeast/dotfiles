@@ -22,6 +22,10 @@ function run {
 #setxkbmap -layout be
 #Swapping CapsLock and escape
 setxkbmap -option caps:swapescape
+eww daemon
+~/.config/eww/launch_eww
+#autohide cursor
+unclutter &
 #autostart ArcoLinux Welcome App
 run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop &
 

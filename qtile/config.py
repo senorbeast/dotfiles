@@ -258,7 +258,7 @@ def init_colors():
         ["#e1acff", "#e1acff"],  # 6window name
         ["#88c0d0", "#88c0d0"],  # 7 Blue
         ["#6790eb", "#6790eb"],  # 8 color 8
-        ["#a9a9a9", "#a9a9a9"],  # color 9
+        ["#909090", "#909090"],  # color 9
     ]
 
 
@@ -288,24 +288,51 @@ def init_widgets_list():
             margin_x=5,
             padding_y=4,
         ),
-        widget.Sep(linewidth=0, padding=5, foreground=colors[2], background=colors[0]),
+        # VIBGYOR
+        # widget.Sep(linewidth=0, padding=2, foreground=colors[2], background="#9400D3"),
+        # widget.Sep(linewidth=0, padding=2, foreground=colors[2], background="#4B0082"),
+        # widget.Sep(linewidth=0, padding=2, foreground=colors[2], background="#0000FF"),
+        # widget.Sep(linewidth=0, padding=2, foreground=colors[2], background="#00FF00"),
+        # widget.Sep(linewidth=0, padding=2, foreground=colors[2], background="#f2c136"),
+        # widget.Sep(linewidth=0, padding=2, foreground=colors[2], background="#FF7F00"),
+        # widget.Sep(linewidth=0, padding=2, foreground=colors[2], background="#FF0000"),
+        # AMG
+        widget.Sep(linewidth=0, padding=5, foreground=colors[4], background="#05AFF2"),
+        widget.Sep(linewidth=0, padding=5, foreground=colors[2], background="#000000"),
+        widget.Sep(linewidth=0, padding=5, foreground=colors[2], background="#ffffff"),
+        widget.Sep(linewidth=0, padding=5, foreground=colors[2], background="#D93D4A"),
         widget.GroupBox(
             font="CaskaydiaCove Nerd Font",
-            fontsize=15,
+            # fontsize=15,
+            # margin_y=3,
+            # margin_x=0,
+            # padding_y=5,
+            # padding_x=3,
+            # borderwidth=3,
+            # disable_drag=True,
+            # active=colors[2],
+            # inactive=colors[9],
+            # rounded=True,
+            # highlight_method="line",
+            # this_current_screen_border=colors[2],  # Underline Highlight
+            # this_screen_border=colors[8],  # Active window border
+            # other_current_screen_border=colors[6],
+            # other_screen_border=colors[6],
+            # foreground=colors[2],
+            # background=colors[0],
+            fontsize=13,
             margin_y=3,
-            margin_x=0,
-            padding_y=5,
+            margin_x=6,
+            padding_y=4,
             padding_x=3,
-            borderwidth=3,
-            disable_drag=True,
+            borderwidth=4,
             active=colors[2],
             inactive=colors[9],
             rounded=True,
-            highlight_method="line",
-            this_current_screen_border=colors[2],  # Underline Highlight
-            this_screen_border=colors[8],  # Active window border
-            other_current_screen_border=colors[6],
-            other_screen_border=colors[6],
+            highlight_color=colors[2],
+            highlight_method="block",
+            this_current_screen_border=colors[2],
+            block_highlight_text_color=colors[0],
             foreground=colors[2],
             background=colors[0],
         ),
@@ -389,12 +416,37 @@ def init_widgets_list():
             background=colors[0],
             format="  {MemUsed: .0f}/{MemTotal:.0f} MB ",
         ),
+        # Add Network information with arrow
+		# widget.Wlan(foreground=colors[2], background=colors[0], padding=5, disconnected_message='None :(', format='  {quality}/70'),				# Add Disk space with arrow
+		# widget.DF(foreground=colors[2], background=colors[0], visible_on_warn=False, format='{p}: {uf}{m}|{r:.0f}%'),
+		# Add Battery Status with arrow
+        widget.TextBox(
+            text="",
+            foreground=colors[2], 
+			background=colors[0], 
+            fontsize=28,
+                ),
+		widget.Battery(
+            font="CaskaydiaCove Nerd Font",
+			charge_char="",
+			discharge_char="",
+			empty_char="",
+			full_char="",
+			show_short_text=False,
+            low_foreground=colors[4],
+			foreground=colors[2], 
+			background=colors[0], 
+			padding=5,
+            fontsize=13,
+			format='{percent:2.0%}'
+			# format='{char} {percent: 2.0%}'
+		),
         widget.CurrentLayoutIcon(
             custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
-            foreground=colors[0],
-            background=colors[5],
+            foreground=colors[2],
+            background=colors[0],
             padding=0,
-            scale=0.7,
+            scale=0.6,
         ),
         # widget.CurrentLayout(
         #    font="CaskaydiaCove Nerd Font",
@@ -409,7 +461,7 @@ def init_widgets_list():
             font="CaskaydiaCove Nerd Font",
             fontsize=14,
             foreground=colors[0],
-            background=colors[7],
+            background=colors[2],
             format=" %a %d %b : %H:%M:%S ",
         ),
     ]
@@ -431,7 +483,10 @@ def init_screens():
     return [
         Screen(
             top=bar.Bar(
-                widgets=init_widgets_screen1(), size=26, opacity=1, margin=[9, 9, 0, 9]
+                widgets=init_widgets_screen1(),
+                size=29,
+                opacity=1,
+                margin=[9, 9, 0, 9],
             )
         )
     ]  # NESW
