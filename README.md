@@ -1,4 +1,4 @@
 # dotfiles
 
 **`qtile bar`**
-![img](https://raw.githubusercontent.com/senorbeast/dotfiles/qtile_bar.png)
+![img](https://github.com/senorbeast/dotfiles/blob/master/qtile_bar.png)
