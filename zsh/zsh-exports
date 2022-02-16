@@ -1,0 +1,216 @@
+#!/bin/sh
+# HISTFILE="$XDG_DATA_HOME"/zsh/history
+HISTSIZE=1000000
+SAVEHIST=1000000
+export PATH="$HOME/.local/bin":$PATH
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
+export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.local/share/go/bin:$PATH
+export GOPATH=$HOME/.local/share/go
+export PATH=$HOME/.fnm:$PATH
+eval "$(fnm env)"
+eval "$(zoxide init zsh)"
+# eval "`pip completion --zsh`"
+
+# NNN
+export NNN_PLUG='f:fzopen;p:preview-tui;d:xdgdefault;t:nmount;v:imgview;g:gutenread;n:nuk
+;'
+export NNN_BMS="d:$HOME/Documents;w:$HOME/Downloads;c:$HOME/.config;b:$HOME/;l:$HOME/.local/share/;h:$HOME/Downloads/HueDOc/;"
+export NNN_OPENER="nuke"
+export NNN_FIFO='/tmp/nnn.fifo'
+export NNN_TMPFILE='/tmp/.lastd'
+
+export NNN_FALLBACK_OPENER=xdg-open
+export NNN_FALLBACK_OPENER="gio open"
+export NNN_FALLBACK_OPENER=gvfs-open
+
+export NNN_DE_FILE_MANAGER=nautilus
+# set --export NNN_FIFO "/tmp/nnn.fifo"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$("$HOME/.miniconda/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$HOME/.miniconda/etc/profile.d/conda.sh" ]; then
+        . "$HOME/.miniconda/etc/profile.d/conda.sh"
+    else
+        export PATH="$HOME/.miniconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export LF_ICONS="\
+di=:\
+fi=:\
+ln=:\
+or=:\
+ex=:\
+*.vimrc=:\
+*.viminfo=:\
+*.gitignore=:\
+*.c=:\
+*.cc=:\
+*.clj=:\
+*.coffee=:\
+*.cpp=:\
+*.css=:\
+*.d=:\
+*.dart=:\
+*.erl=:\
+*.exs=:\
+*.fs=:\
+*.go=:\
+*.h=:\
+*.hh=:\
+*.hpp=:\
+*.hs=:\
+*.html=:\
+*.java=:\
+*.jl=:\
+*.js=:\
+*.json=:\
+*.lua=:\
+*.md=:\
+*.php=:\
+*.pl=:\
+*.pro=:\
+*.py=:\
+*.rb=:\
+*.rs=:\
+*.scala=:\
+*.ts=:\
+*.vim=:\
+*.cmd=:\
+*.ps1=:\
+*.sh=:\
+*.bash=:\
+*.zsh=:\
+*.fish=:\
+*.tar=:\
+*.tgz=:\
+*.arc=:\
+*.arj=:\
+*.taz=:\
+*.lha=:\
+*.lz4=:\
+*.lzh=:\
+*.lzma=:\
+*.tlz=:\
+*.txz=:\
+*.tzo=:\
+*.t7z=:\
+*.zip=:\
+*.z=:\
+*.dz=:\
+*.gz=:\
+*.lrz=:\
+*.lz=:\
+*.lzo=:\
+*.xz=:\
+*.zst=:\
+*.tzst=:\
+*.bz2=:\
+*.bz=:\
+*.tbz=:\
+*.tbz2=:\
+*.tz=:\
+*.deb=:\
+*.rpm=:\
+*.jar=:\
+*.war=:\
+*.ear=:\
+*.sar=:\
+*.rar=:\
+*.alz=:\
+*.ace=:\
+*.zoo=:\
+*.cpio=:\
+*.7z=:\
+*.rz=:\
+*.cab=:\
+*.wim=:\
+*.swm=:\
+*.dwm=:\
+*.esd=:\
+*.jpg=:\
+*.jpeg=:\
+*.mjpg=:\
+*.mjpeg=:\
+*.gif=:\
+*.bmp=:\
+*.pbm=:\
+*.pgm=:\
+*.ppm=:\
+*.tga=:\
+*.xbm=:\
+*.xpm=:\
+*.tif=:\
+*.tiff=:\
+*.png=:\
+*.svg=:\
+*.svgz=:\
+*.mng=:\
+*.pcx=:\
+*.mov=:\
+*.mpg=:\
+*.mpeg=:\
+*.m2v=:\
+*.mkv=:\
+*.webm=:\
+*.ogm=:\
+*.mp4=:\
+*.m4v=:\
+*.mp4v=:\
+*.vob=:\
+*.qt=:\
+*.nuv=:\
+*.wmv=:\
+*.asf=:\
+*.rm=:\
+*.rmvb=:\
+*.flc=:\
+*.avi=:\
+*.fli=:\
+*.flv=:\
+*.gl=:\
+*.dl=:\
+*.xcf=:\
+*.xwd=:\
+*.yuv=:\
+*.cgm=:\
+*.emf=:\
+*.ogv=:\
+*.ogx=:\
+*.aac=:\
+*.au=:\
+*.flac=:\
+*.m4a=:\
+*.mid=:\
+*.midi=:\
+*.mka=:\
+*.mp3=:\
+*.mpc=:\
+*.ogg=:\
+*.ra=:\
+*.wav=:\
+*.oga=:\
+*.opus=:\
+*.spx=:\
+*.xspf=:\
+*.pdf=:\
+*.nix=:\
+"
+export FFF_TRASH_CMD="trash-put"
+export FFF_TRASH=~/.local/share/Trash/files
+export FFF_KEY_MKDIR="f"
+export FFF_KEY_MKFILE="i"
+export FFF_TRASH=~/.local/share/Trash/files
+export FFF_FAV1=~/videos/anime
+export FFF_FAV2=~/documents/Uni
+export FFF_FAV3=~/pictures/Wallpapers/wallpapers
+export FFF_MARK_FORMAT="> %f"
+export FFF_FILE_FORMAT=" %f"

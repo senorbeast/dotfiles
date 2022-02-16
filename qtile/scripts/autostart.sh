@@ -22,7 +22,15 @@ function run {
 xrandr --output eDP1 --off
 #autohide cursor
 unclutter &
-setxkbmap -option caps:swapescape
+setxkbmap -option "ctrl:swap_rwin_rctl" 
+setxkbmap -option "caps:swapescape" 
+
+#Some ways to set your wallpaper besides variety or nitrogen
+feh --bg-fill ~/.config/variety/Favorites/OHR.IrohazakaRoad_EN-US5310275011_1920x1080.jpg
+
+#start sxhkd to replace Qtile native key-bindings
+#run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
+
 #starting utility applications at boot time
 lxsession &
 run nm-applet &

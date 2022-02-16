@@ -8,7 +8,7 @@
  */
 
 configuration {
-	font:							"Noto Sans Bold 10";
+	font:							"Liga SFMono Nerd Font  11";
     show-icons:                     true;
 	icon-theme: 					"Papirus";
     display-drun: 					"";
@@ -18,9 +18,10 @@ configuration {
 }
 
 * {
-    background:                     #00000000;
+    background:                     #00000070;
     background-alt:              	#00000000;
     background-bar:                 #f2f2f215;
+    // background-bar:                 #00000040;
     foreground:                     #f2f2f2EE;
     accent:			            	#3DAEE966;
 }
@@ -98,7 +99,7 @@ element {
 }
 
 element-icon {
-    background-color: 				@background;
+    background-color: 				@background-alt;
     text-color:       				inherit;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
@@ -107,7 +108,7 @@ element-icon {
 }
 
 element-text {
-    background-color: 				@background;
+    background-color: 				@background-alt;
     text-color:       				inherit;
     expand:                         true;
     horizontal-align:               0.5;
